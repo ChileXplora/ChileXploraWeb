@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChileXplora | Experiencias Memorables</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',sans-serif;}
+body{background:#F7F7F5;color:#333;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+header{
+  background:linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),url('images/patagonia1.png');
+  background-size:cover;background-position:center;
+  height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:white;padding:20px;
+}
+header h1{font-family:'Playfair Display', serif;font-size:3rem;letter-spacing:2px;}
+header span{color:#00C896;}
+header p{max-width:650px;margin:20px 0;font-size:1.1rem;}
+.btn{background:#00C896;color:white;padding:14px 28px;border:none;border-radius:40px;font-weight:bold;cursor:pointer;transition:0.3s;margin:5px;}
+.btn:hover{background:#009f75;}
+section{padding:70px 20px;max-width:1200px;margin:auto;}
+.section-title{font-family:'Playfair Display', serif;text-align:center;margin-bottom:50px;font-size:2.2rem;color:#0E2A26;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;}
+.card{background:white;border-radius:15px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,0.1);padding-bottom:20px;transition:0.3s;cursor:pointer;}
+.card:hover{transform:translateY(-5px);}
+.card img{width:100%;height:220px;object-fit:cover;}
+.card h3{padding:20px 20px 10px;color:#0E2A26;font-family:'Playfair Display', serif;}
+.card p{padding:0 20px 10px;color:#555;}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);justify-content:center;align-items:center;z-index:999;}
+.modal-content{background:white;padding:30px;border-radius:15px;max-width:500px;width:90%;text-align:left;position:relative;}
+.modal-close{position:absolute;top:15px;right:20px;font-size:20px;cursor:pointer;color:#333;font-weight:bold;}
+.cart{position:fixed;bottom:20px;right:20px;background:#00C896;color:white;padding:15px 22px;border-radius:50px;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.2);font-weight:bold;z-index:999;}
+footer{background:#111;color:white;text-align:center;padding:30px 20px;margin-top:60px;}
+footer a{color:#00C896;margin:0 10px;}
+.language-switch{position:fixed;top:20px;right:20px;background:#0E2A26;color:white;padding:10px 18px;border-radius:30px;cursor:pointer;z-index:999;}
+@media(max-width:768px){header h1{font-size:2.2rem;}}
+.tab-buttons{text-align:center;margin-bottom:30px;}
+.tab-buttons button{margin:0 10px;background:#0E2A26;color:white;padding:10px 20px;border-radius:30px;cursor:pointer;transition:0.3s;}
+.tab-buttons button:hover{background:#00C896;}
+</style>
+</head>
+<body>
+
+<div class="language-switch" onclick="switchLang()">ES / EN / PT</div>
+
+<header>
+<h1><span>CHILE</span>XPLORA</h1>
+<p id="hero-es">Experiencias memorables diseñadas desde la zona centro hasta la Patagonia, conectando con la naturaleza y cultura de Chile.</p>
+<p id="hero-en" style="display:none;">Memorable experiences designed from central Chile to Patagonia, connecting with Chile's nature and culture.</p>
+<p id="hero-pt" style="display:none;">Experiências memoráveis projetadas do centro ao sul da Patagônia, conectando com a natureza e cultura do Chile.</p>
+<a href="#tours" class="btn" id="btn-es">Diseñar mi experiencia</a>
+<a href="#tours" class="btn" id="btn-en" style="display:none;">Design My Experience</a>
+<a href="#tours" class="btn" id="btn-pt" style="display:none;">Planejar minha experiência</a>
+<a href="https://www.instagram.com/chilexplora._" target="_blank" class="btn" style="margin-top:10px;background:#0E2A26;">Instagram</a>
+</header>
+
+<section class="founder" id="founder">
+<h2 class="section-title" id="founder-title-es">Fundador</h2>
+<h2 class="section-title" id="founder-title-en" style="display:none;">Founder</h2>
+<h2 class="section-title" id="founder-title-pt" style="display:none;">Fundador</h2>
+<p id="founder-text-es">ChileXplora fue fundada por <strong>Nicolás Zuñiga Olivares</strong>, explorador apasionado por la montaña y los territorios naturales de Chile. Cada viaje es curado y diseñado para crear memorias únicas y significativas.</p>
+<p id="founder-text-en" style="display:none;">ChileXplora was founded by <strong>Nicolás Zuñiga Olivares</strong>, passionate explorer of Chile's mountains and natural territories. Each journey is curated to create unique and meaningful memories.</p>
+<p id="founder-text-pt" style="display:none;">ChileXplora foi fundada por <strong>Nicolás Zuñiga Olivares</strong>, explorador apaixonado pelas montanhas e territórios naturais do Chile. Cada viagem é planejada para criar memórias únicas e significativas.</p>
+</section>
+
+<section id="portafolio">
+<h2 class="section-title" id="portfolio-title-es">Experiencias Memorables</h2>
+<h2 class="section-title" id="portfolio-title-en" style="display:none;">Memorable Experiences</h2>
+<h2 class="section-title" id="portfolio-title-pt" style="display:none;">Experiências Memoráveis</h2>
+
+<div class="tab-buttons">
+<button onclick="openTab('centro')">Destino Centro</button>
+<button onclick="openTab('sur')">Destino Sur</button>
+<button onclick="openTab('patagonia')">Destino Patagonia</button>
+</div>
+
+<div class="cards">
+<div class="card" onclick="window.location.href='centro.html'">
+<h3>Centro</h3>
+<p>Explora ciudades, lagos y montañas del centro de Chile.</p>
+</div>
+<div class="card" onclick="window.location.href='sur.html'">
+<h3>Sur</h3>
+<p>Vive la naturaleza única de la zona sur con volcanes y bosques.</p>
+</div>
+<div class="card" onclick="window.location.href='patagonia.html'">
+<h3>Patagonia</h3>
+<p>Conéctate con los glaciares, montañas y paisajes remotos.</p>
+</div>
+</div>
+</section>
+
+<section id="tours">
+<h2 class="section-title" id="tours-title-es">Reserva Tu Experiencia</h2>
+<h2 class="section-title" id="tours-title-en" style="display:none;">Book Your Experience</h2>
+<h2 class="section-title" id="tours-title-pt" style="display:none;">Reserve Sua Experiência</h2>
+
+<div class="cards">
+<div class="card" onclick="openModal('trekking')">
+<h3>Trekking Full Day</h3>
+<p>Selecciona tu ruta y valor para cotizar en WhatsApp</p>
+</div>
+
+<div class="card" onclick="openModal('expediciones')">
+<h3>Expediciones y Travesías</h3>
+<p>Explora diferentes travesías y cotiza directamente en WhatsApp</p>
+</div>
+</div>
+</section>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+<div class="modal-content" id="modal-content">
+<span class="modal-close" onclick="closeModal()">×</span>
+<div id="modal-body"></div>
+</div>
+</div>
+
+<div class="cart" onclick="sendToWhatsApp()">🛒 Cotizar por WhatsApp / Quote via WhatsApp</div>
+
+<footer>
+<p>© 2026 ChileXplora | Experiencias Premium en la Naturaleza de Chile</p>
+<p>
+<a href="https://www.instagram.com/chilexplora._" target="_blank">Instagram</a> |
+<a href="https://wa.me/56994709523" target="_blank">WhatsApp</a>
+</p>
+</footer>
+
+<script>
+let cart=[];
+function addToCart(item){cart.push(item);alert(item+" agregado al carrito");}
+function sendToWhatsApp(){
+  if(cart.length===0){alert("Tu carrito está vacío");return;}
+  let message="Hola ChileXplora, quiero reservar las siguientes experiencias:%0A";
+  cart.forEach(i=>{message+="- "+i+"%0A";});
+  window.open("https://wa.me/56994709523?text="+message,"_blank");
+}
+function switchLang(){
+  const langs=['es','en','pt'];
+  langs.forEach(l=>{
+    document.querySelectorAll('[id$="-'+l+'"]').forEach(e=>e.style.display=e.style.display==='none'?'block':'none');
+  });
+}
+function openModal(type){
+  let body=document.getElementById('modal-body');
+  if(type==='trekking'){
+    body.innerHTML=`<h3>Trekking Full Day</h3>
+    <ul>
+      <li onclick="addToCart('Trekking Volcán')">Trekking Volcán - $80 USD</li>
+      <li onclick="addToCart('Trekking Lago')">Trekking Lago - $70 USD</li>
+      <li onclick="addToCart('Trekking Valle')">Trekking Valle - $90 USD</li>
+    </ul>`;
+  } else if(type==='expediciones'){
+    body.innerHTML=`<h3>Expediciones y Travesías</h3>
+    <ul>
+      <li onclick="addToCart('Expedición Montañas')">Expedición Montañas - $200 USD</li>
+      <li onclick="addToCart('Travesía Patagonia')">Travesía Patagonia - $300 USD</li>
+    </ul>`;
+  }
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+function openTab(destino){window.location.href=destino+'.html';}
+</script>
+
+</body>
+</html>
